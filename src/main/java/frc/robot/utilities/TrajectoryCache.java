@@ -12,7 +12,6 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
-
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.SwerveConstants;
 
@@ -23,12 +22,13 @@ import frc.robot.Constants.SwerveConstants;
 public class TrajectoryCache {
     private FileLog log;
    
-    private static int trajectoryCount = 2;
+    private static int trajectoryCount = 3;
     public TrajectoryFacing[] cache = new TrajectoryFacing[trajectoryCount];        // array of trajectories
 
     public enum TrajectoryType {
         test(0),
-        testCurve(1);
+        testCurve(1),
+        BarrelPath(2);
         // CenterBalanceBlue(2),
         // CenterBalanceRed(3),
         // LeaveCommunity(4),
@@ -161,7 +161,33 @@ public class TrajectoryCache {
                 List.of(),
                 new Pose2d(3, 3, new Rotation2d(Math.toRadians(90.0)))
             )
-        );     
+        );   
+        
+        cache[TrajectoryType.BarrelPath.value] = new TrajectoryFacing(
+            new Rotation2d(-Math.PI/2),            // Start facing +X direction
+            new Rotation2d(Math.PI),            // End facing +X direction
+            calcTrajectory("Barrel Path", 0.4, 0.4,
+               new Pose2d(1.1, 2.3, new Rotation2d(0.0)),
+               List.of(
+                   new Translation2d(1.3, 0.0),
+                   new Translation2d(2.2,-0.76),
+                   new Translation2d(-1.07,-0.76),
+                   new Translation2d(-0.76,0.76),
+                   new Translation2d(0.76,0.76),
+                   new Translation2d(4.6,0.0),
+                   new Translation2d(-0.38, 1.75),
+                   new Translation2d(-0.76,-1),
+                   new Translation2d(1.5,-2.6),
+                   new Translation2d(1.5,1.1),
+                   new Translation2d(-1.5,0.8),
+                   new Translation2d(-2.3, -0.2),
+                   new Translation2d(-2.2,0.0)
+               ),
+               new Pose2d(3, 3, new Rotation2d(Math.toRadians(180.0))),
+               log
+           )
+
+        );
         
         // cache[TrajectoryType.CenterBalanceBlue.value] = new TrajectoryFacing(
         //     new Rotation2d(Math.PI),            // Start facing driver station
