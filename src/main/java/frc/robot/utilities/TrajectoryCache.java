@@ -164,30 +164,31 @@ public class TrajectoryCache {
         );   
         
         cache[TrajectoryType.BarrelPath.value] = new TrajectoryFacing(
-            new Rotation2d(-Math.PI/2),            // Start facing +X direction
-            new Rotation2d(Math.PI),            // End facing +X direction
-            calcTrajectory("Barrel Path", 0.4, 0.4,
-               new Pose2d(1.1, 2.3, new Rotation2d(0.0)),
+            new Rotation2d(0.0),            // Start facing +X direction
+            new Rotation2d(0.0),            // End facing +X direction
+            calcTrajectory("Barrel Path", 0.6, 0.4,
+               new Pose2d(1.0922, 2.286, new Rotation2d(0.0)),
                List.of(
-                   new Translation2d(1.3, 0.0),
-                   new Translation2d(2.2,-0.76),
-                   new Translation2d(-1.07,-0.76),
-                   new Translation2d(-0.76,0.76),
-                   new Translation2d(0.76,0.76),
-                   new Translation2d(4.6,0.0),
-                   new Translation2d(-0.38, 1.75),
-                   new Translation2d(-0.76,-1),
-                   new Translation2d(1.5,-2.6),
-                   new Translation2d(1.5,1.1),
-                   new Translation2d(-1.5,0.8),
-                   new Translation2d(-2.3, -0.2),
-                   new Translation2d(-2.2,0.0)
+                   new Translation2d(2.286, 2.667), // Begin curve around 1st Barrel
+                   new Translation2d(3.81, 2.286),
+                   new Translation2d(4.572, 1.524),
+                   new Translation2d(3.81, 0.762),
+                   new Translation2d(3.048, 1.524),
+                   new Translation2d(3.81, 2.286), // End Curve around 1st Barrel
+                   new Translation2d(6.096, 2.286),// Begin Curve Around 2nd Barrel
+                   new Translation2d(6.858, 3.048),
+                   new Translation2d(6.096, 3.81), 
+                   new Translation2d(5.334, 3.048),
+                   new Translation2d(6.096, 1.524), // End Curve around 2nd Barrel
+                   new Translation2d(7.62, 0.762), // Begin Curve around 3rd Barrel
+                   new Translation2d(8.382, 1.524),
+                   new Translation2d(7.62, 2.286), // End Curve around 3rd Barrel
+                   new Translation2d(3.81, 2.286) 
                ),
-               new Pose2d(3, 3, new Rotation2d(Math.toRadians(180.0))),
+               new Pose2d(0.85, 2.286, Rotation2d.fromDegrees(180)),
                log
-           )
-
-        );
+            )
+           );
         
         // cache[TrajectoryType.CenterBalanceBlue.value] = new TrajectoryFacing(
         //     new Rotation2d(Math.PI),            // Start facing driver station
